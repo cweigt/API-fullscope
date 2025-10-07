@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import '../styles/RandomQuote.styles.css';
+import { API_URL } from '../config';
 
 interface RandomQuoteProps {
   onQuoteSaved?: () => void;
@@ -31,7 +32,7 @@ const RandomQuote = ({ onQuoteSaved }: RandomQuoteProps) => {
 
     setIsSaving(true);
     try {
-      const response = await fetch('http://localhost:3001/api/quotes', {
+      const response = await fetch(`${API_URL}/api/quotes`, {
         //need specific body because you are creating a new object with specific fields
         method: 'POST',
         headers: {

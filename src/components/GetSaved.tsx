@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import '../styles/GetSaved.styles.css';
+import { API_URL } from '../config';
 
 interface SavedQuote {
   _id: string;
@@ -29,7 +30,7 @@ const GetSaved = ({ refreshTrigger }: GetSavedProps) => {
   const handleFetchSaved = async() => {
     setLoading(true);
     try {
-        const response = await fetch('http://localhost:3001/api/quotes', {
+        const response = await fetch(`${API_URL}/api/quotes`, {
             //does not need to explicity state the body because it's fetching a currently existing object
             method: 'GET',
             headers: {
@@ -52,7 +53,7 @@ const GetSaved = ({ refreshTrigger }: GetSavedProps) => {
 
   const handleDeleteQuote = async (quoteId: string) => {
     try {
-        const response = await fetch(`http://localhost:3001/api/quotes/${quoteId}`, {
+        const response = await fetch(`${API_URL}/api/quotes/${quoteId}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
